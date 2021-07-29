@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<ui:composition>
+
+    <h:form style="float: right" >
+        <h:outputLabel  value="#{loginNamed.messageBean}"/>
+        <h:panelGrid columns="2" rendered="#{!loginNamed.admin and !loginNamed.klient}">
+            <h:outputLabel value="Login:"/><h:inputText id="login" value="#{loginNamed.daneLogowaniaEntity.login}"/>
+            <h:outputLabel value="Hasło:"/><h:inputSecret id="haslo" value="#{loginNamed.daneLogowaniaEntity.haslo}"/>
+            <h:commandButton id="signIn" type="submit" value="Zaloguj" action="${loginNamed.authenticCredentials()}"/>
+        </h:panelGrid>
+
+        <h:panelGrid columns="2" rendered="#{loginNamed.admin or loginNamed.klient}" style="font-size: 150%">
+            <h:outputLabel value="#{loginNamed.daneKlientEntity.imie}"/>
+            <h:outputLabel value="#{loginNamed.daneKlientEntity.nazwisko}"/>
+            <h:commandButton id="signOut" type="submit" value="Wyloguj" action="#{loginNamed.clearPermissionFlags}" />
+            <h:commandButton id="dodajadm" type="submit" value="Dodaj admina" action="addAdmin" />
+        </h:panelGrid>
+
+    </h:form>
+
+
+</ui:composition>
+</body>
+</html>

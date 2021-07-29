@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/klientLayout.xhtml">
+        <ui:define name ="menu">
+            <ui:include src="/szablon/klientMenu.xhtml"></ui:include>
+        </ui:define>
+        <ui:define name="content">
+    <h:form>
+        <h1>Rejestracja</h1>
+        <h:outputText value="#{kontoNamed.messageBean}"/>
+        <br/>
+        <h:panelGrid columns="2">
+            <h:outputLabel>Imię:</h:outputLabel><h:inputText id="imie" value="#{kontoNamed.daneKlientEntity.imie}"/>
+            <h:outputLabel>Nazwisko:</h:outputLabel><h:inputText id="nazwisko" value="#{kontoNamed.daneKlientEntity.nazwisko}"/>
+            <h:outputLabel>Tel:</h:outputLabel><h:inputText id="tel" value="#{kontoNamed.daneKlientEntity.tel}"/>
+            <h:outputLabel>Email:</h:outputLabel><h:inputText id="email" value="#{kontoNamed.daneKlientEntity.email}"/>
+            <h:outputLabel>Login:</h:outputLabel><h:inputText id="login" value="#{kontoNamed.daneLogowaniaEntity.login}"/>
+            <h:outputLabel>Hasło:</h:outputLabel><h:inputSecret id="haslo" value="#{kontoNamed.daneLogowaniaEntity.haslo}"/>
+            <h:outputLabel>Powtórz hasło:</h:outputLabel><h:inputSecret id="passwordValid" value="#{kontoNamed.verificationPassword}"/>
+            <h:outputLink onclick="window.open('regulaminContent.xhtml', 'TEST', 'dependent=yes, menubar=no, toolbar=no'); return false;">
+                <h:outputText value="Zapoznałem się z regulaminem" />
+            </h:outputLink>
+            <h:selectBooleanCheckbox value="#{kontoNamed.reg}" id="regulamin"/>
+            <a class="dymek"> Zapoznałem się z informacją<br/>
+                o przetwarzaniu danych<span> Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą
+            o ochronie danych osobowych. Podanie danych osobowych jest dobrowolne ale niezbędne do zakończenia procesu rejestracji. Zostałem poinformowany, że przysługuje mi prawo dostępu do swoich danych, możliwosci ich poprawiania
+            , żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest BuskiRowerMiejski z siedzibą ul. Prosta 7 28-100 Busko Zdrój</span> </a>
+            <h:selectBooleanCheckbox value="#{kontoNamed.rodo}" id="rodo"/>
+            <br/>
+            <h:commandButton action="#{kontoNamed.addNewKlientEntity}" value="Wyslij"/>
+
+
+        </h:panelGrid>
+    </h:form>
+        </ui:define>
+        <ui:define name="footer">
+            <ui:include src="/szablon/klientFooter.xhtml"></ui:include>
+        </ui:define>
+        <ui:define name="header">
+            <ui:include src="/szablon/klientHeader.xhtml"></ui:include>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

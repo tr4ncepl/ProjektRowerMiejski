@@ -1,0 +1,160 @@
+#page
+{
+    background-color: white;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header
+{
+    background-image: url("https://www.articque.com/wp-content/themes/articque/images/backgrounds/header/art-header-main/full/blue_art-header-main.jpg");
+    height: 60px;
+    width: 100%;
+    color: #070706;
+    font-size: 120%;
+    text-align: right;
+    padding-top:5%;
+    padding-bottom: 5%;
+
+}
+#menu
+{
+
+    background-color: #9b9b9b;
+    height: 90px;
+    width: 100%;
+}
+
+
+#content
+{
+
+    width: 70%;
+    /*height: 1220px;*/
+    height:auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    float: left;
+    padding-left: 5%;
+}
+
+#contextMenu
+{
+
+    background-color: silver;
+    width: 10%;
+    /*height: 520px;*/
+    height: auto;
+    float:left;
+}
+
+
+#footer
+{
+    background-color: #4fa1c0;
+    bottom: 0;
+    height: 50px;
+    width: 95%;
+    float:left;
+    color:white;
+    padding-bottom:10px;
+    padding-left:5%;
+}
+
+
+#contextMenu
+{
+
+
+    width: 25%;
+    /*height: 520px;*/
+    height: auto;
+
+
+    float:right;
+}
+
+.contextbutton
+{
+
+    background-color:white;
+    width: 100%;
+    color:black;
+    box-shadow: transparent;
+}
+.contextbutton:hover
+{
+
+    background-color: #077682;
+    box-shadow: transparent;
+    cursor:pointer;
+    color:white;
+}
+
+
+
+.menubuttons button {
+    background-color: #4fa1c0; /* kolot tła */
+    border: 1px solid White; /* Green border */
+    width:16.667%; /*szerokość 25% kontenera*/
+    height:90px;/*wysokość*/
+    color: black; /* kolor biały */
+    font-size: 120%;
+    padding: 10px 24px; /* margines wewnętrzny górny i praw 10px i 24px */
+    float: left; /* obiekt pływający */
+}
+
+
+
+.menubuttons button:hover {
+    background-color: #0e73c0; /*zmiana koloru po najechaniu na przycisk*/
+    cursor:pointer; /*zmiana kursora na wskaźnik po najechaniu na przycisk*/
+    color:white;
+}
+
+.oddRow
+{
+    background-color: #caecff;
+}
+.evenRow
+{
+    background-color: #f0ffff;
+}
+
+.tableColumn
+{
+    width:100%;
+    height: 100%;
+    font-size: 120%;
+}
+.fitted
+{
+    width: 90%;
+}
+
+a.dymek span {
+
+    display: none;
+    padding: 2px 3px;
+    margin-left: 8px;
+    width: 600px;
+    z-index: 2;
+    text-decoration: underline;
+
+}
+
+a.dymek:hover span {
+    border: 1px solid #ccc;
+    display: inline;
+    position:absolute;
+
+    margin: 15px 0 0 5px;
+    background: black;
+
+    color: white;
+
+    text-align: center;
+}
+
+p { text-indent: 20px; }

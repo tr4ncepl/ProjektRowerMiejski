@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+
+    <p:dataTable var="a" value="#{rowerNamed.rowerEntityList}">
+    <p:column headerText="Id" sortBy="#{a.idRower}">
+        <h:outputText value="#{a.idRower}"/>
+    </p:column>
+
+    <p:column headerText="Name" sortBy="#{a.nazwa}">
+        <h:outputText value="#{a.nazwa}"/>
+    </p:column>
+
+    <p:column headerText="Phone Number" sortBy="#{a.status}">
+        <h:outputText value="#{a.status}"/>
+    </p:column>
+
+</p:dataTable>
+
+</h:body>
+</html>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.admin}">
+
+        <h1>Bieżące naprawy</h1>
+
+        <h:dataTable id="naprawyList" value="#{rowerNamed.naprawyList}" var="x" rendered="#{not empty rowerNamed.naprawyList}" border="0" bgcolor="#7cb9e8" rowClasses="oddRow,evenRow" styleClass="fitted">
+            <h:column>
+                <f:facet name="header">ID NAPRAWY</f:facet>
+                #{x.idNaprawa}
+            </h:column>
+            <h:column>
+                <f:facet name="header">ID ROWER</f:facet>
+                #{x.rowerEntity.idRower}
+            </h:column>
+            <h:column>
+                <f:facet name="header">ROWER</f:facet>
+                #{x.rowerEntity.typ}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data</f:facet>
+                <h:outputText value="#{x.dt}"><f:convertDateTime pattern="dd-MM-yyyy"/></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Opis</f:facet>
+                #{x.opis}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cena naprawy</f:facet>
+                #{x.cena}
+            </h:column>
+            <h:column>
+            <f:facet name="header">AKCJE</f:facet>
+            <h:commandLink action="zwrotPunktContent" value="Zwroc">
+                <f:actionListener binding="#{rowerNamed.setRowerEntity(x.rowerEntity)}" />
+            </h:commandLink>
+            </h:column>
+        </h:dataTable>
+
+        <h:outputText value="Brak bieżących napraw" rendered="#{empty rowerNamed.naprawyList}"/>
+<br/>
+        <h:commandButton action="historiaNapraw" value="Historia napraw"/>
+
+
+
+
+    </h:form>
+
+
+    <h:form rendered="#{!loginNamed.admin}">
+        <ui:include src="brakDostepuContent.xhtml"/>
+    </h:form>
+</f:view>
+</html>

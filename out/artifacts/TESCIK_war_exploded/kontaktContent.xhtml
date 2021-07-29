@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<body>
+<ui:composition>
+
+    <h1>Zadaj nam pytanie</h1>
+    <br></br>
+    <h3>Krok 1z1 </h3>
+    <br></br>
+
+    <h:form>
+        <h:outputLabel value="#{mailSender.messageBean}"/>
+        <h:panelGrid columns="2">
+
+            <h:outputLabel value="Imie"/><br/>
+            <h:inputText value="#{mailSender.name}"/><br/>
+            <h:outputLabel value ="Nazwisko"/><br/>
+            <h:inputText value ="#{mailSender.lastname}"/><br/>
+            <h:outputLabel value = "Telefon kontaktowy"/><br/>
+            <h:inputText value="#{mailSender.tel}"/><br/>
+            <h:outputLabel value = "Email"/><br/>
+            <h:inputText value="#{mailSender.mail}"/><br/>
+            <h:outputLabel value="Temat wiadomości"/><br/>
+            <h:selectOneMenu value="#{mailSender.theme}">
+                <f:selectItem itemValue="Pytanie" itemLabel="Pytanie"/>
+                <f:selectItem itemValue="Zgłoszenie awarii" itemLabel="Zgłoszenie awarii"/>
+                <f:selectItem itemValue="Odnalezienie Roweru" itemLabel="Odnalezienie Roweru"/>
+                <f:selectItem itemValue="Reklamacja" itemLabel="Reklamacja"/>
+            </h:selectOneMenu>
+            <br/><a class="dymek">Zapoznałem się z informacją
+                o przetwarzaniu danych<span> Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z ustawą
+            o ochronie danych osobowych. Podanie danych osobowych jest dobrowolne ale niezbędne do zakończenia procesu rejestracji. Zostałem poinformowany, że przysługuje mi prawo dostępu do swoich danych, możliwosci ich poprawiania
+            , żądania zaprzestania ich przetwarzania. Administratorem danych osobowych jest BuskiRowerMiejski z siedzibą ul. Prosta 7 28-100 Busko Zdrój</span> </a>
+            <br/>
+            <h:selectBooleanCheckbox value="#{mailSender.rodo}" id="rodo"/><br/>
+            <h:outputLabel value="Tresc wiadomości"/><br/>
+            <h:inputTextarea value="#{mailSender.contents}"/>
+<br/>
+
+            <h:commandButton type="submit" action="kontaktWys" value="Wyślij">
+                <f:actionListener binding="#{mailSender.sendEmail()}"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{mailSender.reset()}" value="Wyczysc"/>
+
+
+        </h:panelGrid>
+    </h:form>
+</ui:composition>
+</body>
+</html>

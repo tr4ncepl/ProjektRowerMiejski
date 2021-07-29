@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.admin}">
+        <h1>Lista klientów</h1>
+    <h:dataTable id="credentialsList" value="#{kontoNamed.klientEntityList}" var="c" border="0" bgcolor="#cdcdcd" rowClasses="oddRow,evenRow" styleClass="fitted">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{c.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">IMIĘ</f:facet>
+            #{c.daneKlientEntity.imie}
+        </h:column>
+        <h:column>
+            <f:facet name="header">NAZWISKO</f:facet>
+            #{c.daneKlientEntity.nazwisko}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Saldo</f:facet>
+            #{c.saldo}
+        </h:column>
+        <h:column>
+            <f:facet name="header">NR. TEL</f:facet>
+            #{c.daneKlientEntity.tel}
+        </h:column>
+        <h:column>
+            <f:facet name="header">E-MAIL</f:facet>
+            #{c.daneKlientEntity.email}
+        </h:column>
+        <h:column>
+        <f:facet name="header">AKCJE</f:facet>
+        <h:commandLink action="doladowanie" value="Nalicz kare" >
+            <f:actionListener binding="#{kontoNamed.setKlientEntity(c)}" />
+        </h:commandLink>
+            </h:column>
+            <h:column>
+            <h:commandLink action="wypListByClient" value="Historia wypożyczeń" >
+                <f:actionListener binding="#{wypozyczenieNamed.setKlientEntity(c)}" />
+            </h:commandLink>
+            </h:column>
+    </h:dataTable>
+    </h:form>
+
+    <h:form rendered="#{!loginNamed.admin}">
+        <ui:include src="brakDostepuContent.xhtml"/>
+    </h:form>
+</f:view>
+</html>

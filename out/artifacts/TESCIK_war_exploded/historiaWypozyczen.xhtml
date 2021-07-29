@@ -1,0 +1,70 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/commonLayout.xhtml">
+
+        <ui:define name ="menu">
+            <ui:include src="/szablon/commonMenu.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form rendered="#{loginNamed.admin}">
+
+                <h1>Historia napraw</h1>
+
+                <h:dataTable id="historiaNaprawyList" value="#{wypozyczenieNamed.wypList}" var="s" border="0" bgcolor="#cdcdcd" rowClasses="oddRow,evenRow" styleClass="fitted">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{s.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ID Rower</f:facet>
+                        #{s.rowerEntity.idRower}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Data wyp</f:facet>
+                        <h:outputText value="#{s.dataWyp}" ><f:convertDateTime pattern="dd-mm-yyyy HH:mm:ss"/></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">punkt</f:facet>
+                        #{s.punktEntity.idPunkt}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">adres</f:facet>
+                        #{s.punktEntity.adres}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Klient Imie</f:facet>
+                        #{s.klientEntity.daneKlientEntity.imie}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nazwisko</f:facet>
+                        #{s.klientEntity.daneKlientEntity.nazwisko}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Czas</f:facet>
+                        #{s.czas}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Naleznosc</f:facet>
+                        <h:outputText value="#{s.oplata}" ><f:convertNumber maxFractionDigits="2"/></h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="footer">
+            <ui:include src="/szablon/commonFooter.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="header">
+            <ui:include src="/szablon/commonHeader.xhtml"></ui:include>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

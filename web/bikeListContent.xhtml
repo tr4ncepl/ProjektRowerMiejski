@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.admin}">
+    <h:outputLabel value="#{configurationNamed.messageBean}"/>
+<h4>Zestawienie rowerów, ich statusu oraz miejscem gdzie się znajdują.</h4>
+    <h:dataTable id="bikeList" value="#{rowerNamed.rowerEntityList}" var="c"  border="0" bgcolor="#7cb9e8" rowClasses="oddRow,evenRow" styleClass="fitted">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{c.idRower}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Typ</f:facet>
+            #{c.typ}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Nazwa</f:facet>
+            #{c.nazwa}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{c.status}
+        </h:column>
+        <h:column>
+            <f:facet name="header">ID punkt</f:facet>
+            #{c.punktEntity.idPunkt}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Adres Punktu</f:facet>
+            #{c.punktEntity.adres}
+        </h:column>
+        <h:column>
+            <f:facet name="header">AKCJE</f:facet>
+            <h:commandLink action="bikesListContent" value="Usuń">
+                <f:actionListener binding="#{rowerNamed.deleteRower(c)}"/>
+            </h:commandLink>
+        </h:column>
+        <h:column>
+            <h:commandLink action="naprawa" value="Odeślij do naprawy">
+                <f:actionListener binding="#{rowerNamed.setRowerEntity(c)}"/>
+                <f:actionListener binding="#{rowerNamed.resetNaprawyEntity()}"/>
+            </h:commandLink>
+        </h:column>
+        <h:column>
+            <h:commandLink action="hisNapRow" value="Historia napraw">
+                <f:actionListener binding="#{rowerNamed.setRowerEntity(c)}"/>
+            </h:commandLink>
+        </h:column>
+    </h:dataTable>
+    </h:form>
+
+    <h:form rendered="#{!loginNamed.admin}">
+        <ui:include src="brakDostepuContent.xhtml"/>
+    </h:form>
+
+
+</f:view>
+</html>

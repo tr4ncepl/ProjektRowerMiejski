@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit" transaction-type="JTA">
+        <jta-data-source>jdbc/sqlpool</jta-data-source>
+        <class>rental.AdminEntity</class>
+        <class>rental.DaneKlientEntity</class>
+        <class>rental.DaneLogowaniaEntity</class>
+        <class>rental.KlientEntity</class>
+        <class>rental.NaprawyEntity</class>
+        <class>rental.PunktEntity</class>
+        <class>rental.RaportyEntity</class>
+        <class>rental.RowerEntity</class>
+        <class>rental.WypozyczenieEntity</class>
+
+    </persistence-unit>
+</persistence>

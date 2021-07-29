@@ -1,0 +1,37 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/klientLayout.xhtml">
+
+        <ui:define name="content">
+          <h4>Jak korzystać z BRM?</h4>
+            Zarejestruj się na stronie, oraz wpłać 10 zł na Osobisty Rachunek.<br/><br/>
+
+            <h4>Jak wypożyczyć rower</h4>
+            <b>1.</b> Podejdź do terminalu oraz zaloguj się na stronie.<br/>
+            <b>2.</b> Po zalogowaniu wejdź w zakładkę <b><h:link value = "Wypożyczenie" outcome = "wypPunkt.xhtml" /></b>.<br/>
+            <b>3.</b> Wybierz punkt w którym się zjadujesz.<br/>
+            <b>4.</b> Wybierz jeden z listy dostępnych rowerów, rower zostanie odblokowany automatycznie.<br/><br/>
+
+       <h4>Jak zwrócić rower</h4>
+            <b>1.</b> Wstaw rower do zamka.<br/>
+            <b>2.</b> Podejdź do terminalu oraz zaloguj się na stronie.<br/>
+            <b>3.</b> Po zalogowaniu wejdź w zakładkę <b><h:link value = "Zwróć" outcome = "wypZwrotPunkt.xhtml" /></b>.<br/>
+            <b>4.</b> Wybierz punkt w którym się znajdujesz.<br/>
+            <b>5.</b> Potwierdź zwrot, środki zostaną pobrane automatycznie z twojego konta.<br/>
+
+            <h3>Pamiętaj aby, wypożyczyć rower musisz posiadac minimum 10zł na Osobistym Koncie. Doładować je możesz w każdej chwili w terminalu wybierając odpowiednią opcję w panelu użytkownika.</h3>
+
+            <br/><br/>
+            <h3>Jeżeli posiadasz jakiekolwiek pytania, skontaktuj się z naszą infolinią:</h3><br/>
+            Telefon: <b>555 555 555</b> <br/>
+            lub poprzed formluarz kontaktowy znajdujący się na stronie.
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

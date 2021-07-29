@@ -1,0 +1,46 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/klientLayout.xhtml">
+
+        <ui:define name ="menu">
+            <ui:include src="/szablon/klientMenu.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="content">
+        <h2>Cennik dla taryfy normalnej</h2>
+
+            Minimalny stan konta, umożliwiający korzystanie z rowerów: <b>10zł</b><br/><br/><br/><br/>
+
+            Od 0 do 20 minuty: <b> 1 zł</b><br/>
+            Od 21 do 60 minuty: <b> 3 zł</b><br/>
+            Od 61 do 120 minuty: <b> 6 zł</b><br/>
+            Od 121 do 180 minuty: <b> 9 zł</b><br/><br/><br/><br/>
+
+
+            Opłata dodatkowa za przekroczenie 12 godzin wypożyczenia: <b>200 zł</b>.
+
+
+
+
+        </ui:define>
+
+        <ui:define name="footer">
+            <ui:include src="/szablon/klientFooter.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="header">
+            <ui:include src="/szablon/klientHeader.xhtml"></ui:include>
+        </ui:define>
+        <ui:define name="contextMenu">
+            <ui:include src="/szablon/klientContextMenu.xhtml"></ui:include>
+        </ui:define>
+
+    </ui:composition>
+</f:view>
+</html>

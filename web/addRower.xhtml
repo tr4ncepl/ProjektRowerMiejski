@@ -1,0 +1,46 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/commonLayout.xhtml">
+
+
+        <ui:define name="content">
+            <h:form rendered="#{loginNamed.admin}">
+
+                <h1>Dodaj rower</h1>
+                <br/>
+                <h:outputText value="#{kontoNamed.messageBean}"/>
+                <h:panelGrid columns="2">
+
+                    <h:outputLabel>Typ:</h:outputLabel><h:inputText id="typ" value="#{rowerNamed.rowerEntity.typ}"/>
+
+                    <h:outputLabel>Nazwa:</h:outputLabel><h:inputText id="nazwa" value="#{rowerNamed.rowerEntity.nazwa}"/>
+
+
+
+                    <h:outputLabel>Numer</h:outputLabel><h:inputText id="nr_seryjny" value="#{rowerNamed.rowerEntity.nrSeryjny}"/>
+
+                    <h:commandButton action="punktList" value="Dodaj">
+                        <f:actionListener binding="#{rowerNamed.addNewRower()}"/>
+                    </h:commandButton>
+
+                </h:panelGrid>
+
+
+
+            </h:form>
+
+            <h:form rendered="#{!loginNamed.admin}">
+                <ui:include src="brakDostepuContent.xhtml"/>
+            </h:form>
+        </ui:define>
+
+
+    </ui:composition>
+</f:view>
+</html>

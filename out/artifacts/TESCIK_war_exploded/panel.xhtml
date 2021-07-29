@@ -1,0 +1,55 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/klientLayout.xhtml">
+
+        <ui:define name ="menu">
+            <ui:include src="/szablon/klientMenu.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <h:form rendered="#{loginNamed.klient}">
+                <h2>Panel użytkownika #{loginNamed.daneKlientEntity.imie} #{loginNamed.daneKlientEntity.nazwisko}</h2>
+                Email: <h:outputLabel value="#{loginNamed.daneKlientEntity.email}"/><br/>
+                Tel:  <h:outputLabel value="#{loginNamed.daneKlientEntity.tel}"/><br/>
+                Saldo: <h:outputText value="#{loginNamed.klientEntity.saldo}" >
+                    <f:convertNumber minFractionDigits="2" />
+                </h:outputText>
+                <br/>
+
+<br/>
+                    <h:outputLabel>Doładuj konto</h:outputLabel><br/><h:inputText id="saldo" value="#{kontoNamed.klientEntity.saldo}"/>
+
+
+
+                <h:commandButton type="submit" value="Doladuj" id="updatePersonalData" action="panel">
+                    <f:actionListener binding="#{kontoNamed.setKlientEntity(loginNamed.klientEntity)}"/>
+                    <f:actionListener binding="#{kontoNamed.doladowanieKonta()}"/>
+                </h:commandButton>
+                <h:commandButton type="submit" value="Historia" id="historia" action="clientWyp">
+                    <f:actionListener binding="#{wypozyczenieNamed.setKlientEntity(loginNamed.klientEntity)}"/>
+                </h:commandButton>
+            </h:form>
+
+            <h:form rendered="#{!loginNamed.klient}">
+                <ui:include src="brakDostepuContent.xhtml"/>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="footer">
+            <ui:include src="/szablon/klientFooter.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="header">
+            <ui:include src="/szablon/klientHeader.xhtml"></ui:include>
+        </ui:define>
+
+    </ui:composition>
+</f:view>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.admin}">
+
+        <h1>Zestawienie klientow, ilosc, czas, suma oplat</h1>
+        <h:dataTable id="countRowerByPunkt" value="#{kontoNamed.klientStats}" var="klientstats" border="0" bgcolor="#cdcdcd" rowClasses="oddRow,evenRow" styleClass="fitted">
+            <h:column>
+                <f:facet name="header">ID Klienta</f:facet>
+                #{klientstats[0]}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Imie</f:facet>
+                #{klientstats[1]}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nazwisko</f:facet>
+                #{klientstats[2]}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ilosc wypozyczen</f:facet>
+                #{klientstats[3]}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Suma czas wyp</f:facet>
+                #{klientstats[4]}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cena</f:facet>
+                <h:outputText value="#{klientstats[5]}"><f:convertNumber maxFractionDigits="2"/></h:outputText>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    <h:form rendered="#{!loginNamed.admin}">
+        <ui:include src="brakDostepuContent.xhtml"/>
+    </h:form>
+</f:view>
+</html>

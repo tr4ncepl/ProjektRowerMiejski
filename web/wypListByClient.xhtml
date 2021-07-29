@@ -1,0 +1,62 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <ui:composition template="/szablon/commonLayout.xhtml">
+
+        <ui:define name ="menu">
+            <ui:include src="/szablon/commonMenu.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form rendered="#{loginNamed.admin}">
+                <h2>Historia wypożyczeń #{wypozyczenieNamed.klientEntity.daneKlientEntity.imie} #{wypozyczenieNamed.klientEntity.daneKlientEntity.nazwisko}</h2>
+
+
+
+
+                <h:dataTable id="wypozyczenieList" value="#{wypozyczenieNamed.wypByKlient}" var="w" rendered="#{not empty wypozyczenieNamed.wypByKlient}" border="1" bgcolor="#FFFFFF"  styleClass="fitted">
+                    <h:column>
+                        <f:facet name="header">Data wypozyczenia</f:facet>
+                        #{w.dataWyp}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Data zwrotu</f:facet>
+                        #{w.dataZwrot}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Czas Trwania</f:facet>
+                        #{w.czas}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Rower</f:facet>
+                        #{w.rowerEntity.nazwa}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Punkt</f:facet>
+                        #{w.punktEntity.adres}
+                    </h:column>
+                </h:dataTable>
+
+                <h:outputText value="Ten klient jeszcze nic nie wypożyczył" rendered="#{empty wypozyczenieNamed.wypByKlient}"/>
+            </h:form>
+
+            <h:form rendered="#{!loginNamed.admin}">
+                <h:outputText value="Zaloguj się !"/>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="footer">
+            <ui:include src="/szablon/commonFooter.xhtml"></ui:include>
+        </ui:define>
+
+        <ui:define name="header">
+            <ui:include src="/szablon/commonHeader.xhtml"></ui:include>
+        </ui:define>
+    </ui:composition>
+</f:view>
+</html>

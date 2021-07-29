@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.klient}">
+        <h2><h:outputText value=" Moje aktywne wypozyczenia" rendered="#{empty wypozyczenieNamed.getWiekszeSaldo(loginNamed.klientEntity)}"/> </h2>
+            <h4><h:outputText value=" Aby zakończyć wypożyczenie naciśnij 'Wybierz'" rendered="#{empty wypozyczenieNamed.getWiekszeSaldo(loginNamed.klientEntity)}"/> </h4>
+        <h:outputText value="#{wypozyczenieNamed.messageBean}"/>
+        <h:outputText value="#{wypozyczenieBean.messageBean}"/>
+        <h:dataTable id="wypozyczenieList" value="#{wypozyczenieNamed.getWypozyczenieByKlient(loginNamed.klientEntity)}" var="w" border="0" bgcolor="#7cb9e8" rowClasses="oddRow,evenRow" styleClass="fitted" rendered="#{empty wypozyczenieNamed.getWiekszeSaldo(loginNamed.klientEntity)}">
+            <h:column>
+                <f:facet name="header">Data wypozyczenia</f:facet>
+                #{w.dataWyp}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data zwrotu</f:facet>
+                #{w.dataZwrot}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Czas Trwania</f:facet>
+                #{w.czas}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Rower</f:facet>
+                #{w.rowerEntity.nazwa}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Punkt</f:facet>
+                #{w.punktEntity.adres}
+            </h:column>
+            <h:column>
+                <f:facet name="wypZwrotPunkt">AKCJE</f:facet>
+                <h:commandLink action="#{wypozyczenieNamed.setWypozyczenieEntity(w)}" value="Wybierz">
+                    <f:actionListener binding="#{wypozyczenieNamed.updateWypozyczenieEntity(w, dateTimeBean.timestamp)}"/>
+                    <f:actionListener binding="#{rowerNamed.setRowerEntity(w.rowerEntity)}"/>
+                    <f:actionListener binding="#{rowerNamed.setRowerToPunkt()}"/>
+                    <f:actionListener binding="#{wypozyczenieNamed.setKlientEntity(w.klientEntity)}"/>
+                    <f:actionListener binding="#{wypozyczenieNamed.reduceBalance(w,w.klientEntity)}"/>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
+
+        <h:outputText value="Aktualnie nie masz żadnych wypożyczeń" rendered="#{empty wypozyczenieNamed.getWypozyczenieByKlient(loginNamed.klientEntity)}"/>
+        <h4><h:outputText value="Twój stan konta który wynosi #{loginNamed.klientEntity.saldo}zł nie jest wystarczający aby dokonać zwrotu. Doładuj swoje konto by móc kontynuować." rendered="#{not empty wypozyczenieNamed.getWiekszeSaldo(loginNamed.klientEntity)}"/></h4>
+    </h:form>
+</f:view>
+</html>

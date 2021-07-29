@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.klient}">
+
+        <h1>Lista dostępnych rowerów w punkcie : #{rowerNamed.punktEntity.adres}</h1>
+        <br/>
+        <h3>Aby wypożyczyć wybrany rower naciśnij "Wybierz", a rower zostanie zwolniony automatycznie.</h3>
+        <h:outputLabel value="#{wypozyczenieNamed.messageBean}"/>
+        <h:dataTable id="rowerList" value="#{rowerNamed.wolneRoweryList}" var="c" border="1" bgcolor="#7cb9e8" rowClasses="oddRow,evenRow" styleClass="fitted" rendered="#{not empty rowerNamed.wolneRoweryList}">
+            <h:column>
+                <f:facet name="header">Nazwa</f:facet>
+                #{c.nazwa}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Typ</f:facet>
+                #{c.typ}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nr</f:facet>
+                #{c.nrSeryjny}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{c.status}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Adres punktu</f:facet>
+                #{c.punktEntity.adres}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Wypożycz</f:facet>
+                <h:commandLink action="wypKlientaList" value="Wybierz">
+                    <f:actionListener binding="#{wypozyczenieNamed.setRowerEntity(c)}"/>
+                    <f:actionListener binding="#{wypozyczenieNamed.addWypozyczenie(loginNamed.klientEntity,dateTimeBean.timestamp,wypozyczenieNamed.rowerEntity,rowerNamed.punktEntity)}"/>
+                </h:commandLink>
+            </h:column>
+
+            <h:commandButton id="addNewWypozyczenie" value="Wypozycz" >
+                <f:actionListener binding="#{wypozyczenieNamed.addWypozyczenie(loginNamed.klientEntity,dateTimeBean.timestamp,wypozyczenieNamed.rowerEntity,rowerNamed.punktEntity)}"/>
+            </h:commandButton>
+        </h:dataTable>
+
+        <h:outputText value="W tym punkcie aktualnie nie ma żadnych rowerów" rendered="#{empty rowerNamed.wolneRoweryList}"/>
+
+    </h:form>
+</f:view>
+</html>

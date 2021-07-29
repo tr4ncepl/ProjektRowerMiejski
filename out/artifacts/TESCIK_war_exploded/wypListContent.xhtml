@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form rendered="#{loginNamed.admin}">
+        <h:dataTable id="wypList" value="#{wypozyczenieNamed.trwajaceWyp}" var="s" border="0" bgcolor="#cdcdcd" rowClasses="oddRow,evenRow" styleClass="fitted" rendered="#{not empty wypozyczenieNamed.trwajaceWyp}">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{s.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">ID Rower</f:facet>
+                #{s.rowerEntity.idRower}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data wyp</f:facet>
+                <h:outputText value="#{s.dataWyp}" ><f:convertDateTime pattern="dd-mm-yyyy HH:mm:ss"/></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">punkt</f:facet>
+                #{s.punktEntity.idPunkt}
+            </h:column>
+            <h:column>
+                <f:facet name="header">adres</f:facet>
+                #{s.punktEntity.adres}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Klient Imie</f:facet>
+                #{s.klientEntity.daneKlientEntity.imie}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nazwisko</f:facet>
+                #{s.klientEntity.daneKlientEntity.nazwisko}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Czas</f:facet>
+                #{s.czas}
+                <h:outputText value="-" rendered="#{empty s.czas}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Naleznosc</f:facet>
+                <h:outputText value="#{s.oplata}" ><f:convertNumber maxFractionDigits="2"/></h:outputText>
+                <h:outputText value="-" rendered="#{empty s.oplata}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:outputText value="Brak trwających wypożyczeń" rendered="#{empty wypozyczenieNamed.trwajaceWyp}"/>
+
+        <br/>
+        <br/>
+        <br>
+            <h:commandButton action="historiaWypozyczen" value="Historia wypożyczeń"/>
+        </br>
+        <br/>
+        <br/>
+        <h:commandButton action="testList" value="Dzisiejsze wypożyczenia"/>
+    </h:form>
+
+
+    <h:form rendered="#{!loginNamed.admin}">
+        <ui:include src="brakDostepuContent.xhtml"/>
+    </h:form>
+</f:view>
+</html>
